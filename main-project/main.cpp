@@ -18,12 +18,15 @@ int main()
     try
     {
         read("data.txt", records, size);
+        cout << "***** Осадки за период *****\n\n";
         for (int i = 0; i < size; i++)
         {
-            cout << records[i]->day << " "
-                << records[i]->month << " "
-                << records[i]->amount << " "
-                << records[i]->characteristic << '\n';
+            cout << "Дата...........: "
+                << setw(2) << setfill('0') << records[i]->day << "."
+                << setw(2) << setfill('0') << records[i]->month << '\n';
+            cout << "Количество (мм): " << records[i]->amount << '\n';
+            cout << "Характеристика.: " << records[i]->characteristic << '\n';
+            cout << '\n';
         }
         for (int i = 0; i < size; i++)
         {
@@ -36,3 +39,4 @@ int main()
     }
     return 0;
 }
+
