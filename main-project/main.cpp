@@ -11,7 +11,8 @@ int main()
     setlocale(LC_ALL, "Russian");
     cout << "Laboratory work #8. GIT\n";
     cout << "Variant #3. Precipitation\n";
-    cout << "Author: Anna Ulskaya\n\n";
+    cout << "Author: Anna Ulskaya\n";
+    cout << "Group: 26PInj1d1\n\n";
 
     precipitation* records[MAX_FILE_ROWS_COUNT];
     int size;
@@ -39,4 +40,3 @@ int main()
     }
     return 0;
 }
-
