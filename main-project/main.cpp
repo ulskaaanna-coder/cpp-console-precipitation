@@ -2,9 +2,20 @@
 #include <iomanip>
 #include "precipitation.h"
 #include "file_reader.h"
+#include "filter.h"
 #include "constants.h"
 
 using namespace std;
+
+void output(precipitation* item)
+{
+    cout << "Дата...........: "
+        << setw(2) << setfill('0') << item->day << "."
+        << setw(2) << setfill('0') << item->month << '\n';
+    cout << "Количество (мм): " << item->amount << '\n';
+    cout << "Характеристика.: " << item->characteristic << '\n';
+    cout << '\n';
+}
 
 int main()
 {
@@ -19,16 +30,24 @@ int main()
     try
     {
         read("data.txt", records, size);
-        cout << "***** Осадки за период *****\n\n";
-        for (int i = 0; i < size; i++)
+
+        int filtered_size = 0;
+        precipitation** rain_days = filter(records, size, check_is_rain, filtered_size);
+        cout << "***** Дни, когда шёл дождь *****\n\n";
+        for (int i = 0; i < filtered_size; i++)
         {
-            cout << "Дата...........: "
-                << setw(2) << setfill('0') << records[i]->day << "."
-                << setw(2) << setfill('0') << records[i]->month << '\n';
-            cout << "Количество (мм): " << records[i]->amount << '\n';
-            cout << "Характеристика.: " << records[i]->characteristic << '\n';
-            cout << '\n';
+            output(rain_days[i]);
         }
+        delete[] rain_days;
+
+        precipitation** small_amount = filter(records, size, check_amount_less_1_5, filtered_size);
+        cout << "***** Дни с осадками меньше 1.5 мм *****\n\n";
+        for (int i = 0; i < filtered_size; i++)
+        {
+            output(small_amount[i]);
+        }
+        delete[] small_amount;
+
         for (int i = 0; i < size; i++)
         {
             delete records[i];
