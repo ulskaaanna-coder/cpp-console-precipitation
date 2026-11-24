@@ -18,9 +18,12 @@
     <ClCompile Include="unit-test-project.cpp">
       <Filter>Исходные файлы</Filter>
     </ClCompile>
+<<<<<<< HEAD
     <ClCompile Include="pch.cpp">
       <Filter>Исходные файлы</Filter>
     </ClCompile>
+=======
+>>>>>>> dev
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="pch.h">
